@@ -1,0 +1,9 @@
+<h1>index view</h1>
+
+<h1><%= params[:category] %></h1>
+<% @books.each do |book| %>
+  <h3><%= link_to book.title, book_path(book.id) %></h3>
+<% end %>
+
+
+<%= link_to "Add Book", new_book_path %>

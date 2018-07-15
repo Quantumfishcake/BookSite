@@ -1,0 +1,24 @@
+<h1><%= @book.title %></h1>
+<% if @book.author.present?   %>
+<h2><%= link_to @book.author.name, @book.author %></h2>
+<% end %>
+<h2><%= @book.description %></h2>
+
+<% if @book.category %>
+
+
+
+  <h2><%= @book.category.name %></h2>
+
+<% end %>
+
+<% if user_signed_in? %>
+
+<% if @book.user_id == current_user.id %>
+
+<%= link_to 'Edit', edit_book_path(@book) %>
+<%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?"}%>
+
+<% end %>
+
+<% end %>

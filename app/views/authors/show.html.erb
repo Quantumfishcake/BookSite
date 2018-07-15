@@ -1,0 +1,14 @@
+<h1>author</h1>
+
+
+
+<h1><%= @author.name %></h1>
+
+<% if @author.category.present? %>
+
+<h2>Genre:<%= @author.category.name %></h2>
+
+<% end %>
+
+<%= link_to 'Edit', edit_author_path(@author) %>
+<%= link_to 'Delete', author_path(@author), method: :delete, data: {confirm: "Are you sure?"}%>

@@ -1,0 +1,13 @@
+
+
+<%= form_for @book, :html => {:multipart => true} do |f| %>
+<%= select_tag(:category_id, options_for_select(@categories), :prompt => 'Select a category') %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.label :description %>
+<%= f.text_field :description %>
+<%= f.select :author_id, @authors %>
+<%= f.submit %>
+
+
+<% end %>
