@@ -14,7 +14,7 @@
   <nav class="navbar navbar-default">
     <div class='container'>
       <div class='navbar-header'>
-        <%= link_to 'Book Review', root_path, class: "navbar-brand" %>
+        <%= link_to 'Books, root_path, class: "navbar-brand" %>
 
       </div>
 
@@ -30,9 +30,9 @@
       <ul class='nav navbar-nav'>
 
 
-            <% Category.all.each do |category| %>
+            <% Group.all.each do |group| %>
               <li>
-                <%= link_to category.name, books_path(category: category.name), class: 'link' %>
+                <%= link_to group.name, books_path(group: group.name), class: 'link' %>
               </li>
             <% end %>
 

@@ -8,10 +8,15 @@
 #  author      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :integer
+#  category_id :integer
+#  author_id   :integer
+#  genre_id    :integer
+#  group_id    :integer
 #
 
 class Book < ApplicationRecord
-  belongs_to :user
-  belongs_to :category
-  belongs_to :author
+  belongs_to :user, :optional => true
+  belongs_to :group, :optional => true
+  belongs_to :author, :optional => true
 end

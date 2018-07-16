@@ -4,9 +4,21 @@
 
 <h1><%= @author.name %></h1>
 
-<% if @author.category.present? %>
+<% if @author.groups.present? %>
 
-<h2>Genre:<%= @author.category.name %></h2>
+
+
+<% @author.groups.each do |x|%>
+<h2>Genre:<%= x.name %></h2>
+<% end %>
+<h2>Books:</h2>
+<ul>
+  <% @author.books.each do |book|%>
+<li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+
+  <% end %>
+
+</ul>
 
 <% end %>
 

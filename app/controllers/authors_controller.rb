@@ -11,7 +11,7 @@ end
 def new
   @author = Author.new
 
-  @categories = Category.all.map { |e| [e.name, e.id]  }
+  @group = Group.all.map { |e| [e.name, e.id]  }
 end
 
 def create
@@ -26,7 +26,7 @@ end
 
 def edit
   @author = Author.find params[:id]
-  @categories = Category.all.map { |e| [e.name, e.id]  }
+  @group = Group.all.map { |e| [e.name, e.id]  }
 end
 
 def update
