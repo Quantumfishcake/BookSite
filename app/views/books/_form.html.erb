@@ -6,6 +6,16 @@
 <%= f.text_field :title %>
 <%= f.label :description %>
 <%= f.text_field :description %>
-<%= f.select :author_id, @authors %>
 <%= f.submit %>
+<% if @chainparams.present? %>
+<%= f.select :chain_id, [@chain.id, @chain.name] %>
+<% else %>
+<%= f.select :chain_id, @chains, :include_blank => true %>
+<% end %>
+<% if @authorparams.present? %>
+<%= f.select :author_id, [@author.id, @author.name] %>
+<% else %>
+<%= f.select :author_id, @authors, :include_blank => true %>
+<% end %>
+
 <% end %>

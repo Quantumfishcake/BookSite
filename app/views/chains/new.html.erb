@@ -1,0 +1,14 @@
+<h1>Chains#new</h1>
+<p>Find me in app/views/chains/new.html.erb</p>
+
+
+<%= form_for @chain do |f|  %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :numbooks %>
+<%= f.text_field :numbooks %>
+
+<%= f.submit %>
+
+
+<% end %>

@@ -1,0 +1,18 @@
+<h1>NYtimes Best selling</h1>
+
+
+
+
+<h2>Fiction</h2>
+
+<% @nyt_fiction["results"].each do |x| %>
+    <h4><%= x["book_details"][0]["title"] %></h4>
+    <p><%= x["book_details"][0]["description"] %></p>
+<% end %>
+
+<h2>Nonfiction</h2>
+
+<% @nyt_nonfiction["results"].each do |x| %>
+    <h4><%= x["book_details"][0]["title"] %></h4>
+    <p><%= x["book_details"][0]["description"] %></p>
+<% end %>

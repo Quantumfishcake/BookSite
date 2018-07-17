@@ -10,11 +10,11 @@
   </head>
 
   <body>
-
+<div class = 'main-container'>
   <nav class="navbar navbar-default">
     <div class='container'>
       <div class='navbar-header'>
-        <%= link_to 'Books, root_path, class: "navbar-brand" %>
+        <%= link_to 'Book', root_path, class: "navbar-brand" %>
 
       </div>
 
@@ -38,8 +38,10 @@
 
 
         <% if user_signed_in? %>
+        <li><%= link_to 'Series', chains_path %></li>
         <li><%= link_to 'Add book', new_book_path %></li>
         <li><%= link_to 'Add Author', new_author_path %></li>
+        <li><%= link_to 'Add Series', new_chain_path %></li>
         <% end %>
       </ul>
     </div>
@@ -50,6 +52,6 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
-
+</div>
   </body>
 </html>

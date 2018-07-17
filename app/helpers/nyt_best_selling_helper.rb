@@ -1,0 +1,2 @@
+module NytBestSellingHelper
+end

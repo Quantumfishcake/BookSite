@@ -1,0 +1,27 @@
+
+<h1><%= @chain.name %> </h1>
+
+<% if @chain.authors.present? %>
+<h1><%= link_to @chain.authors.first.name, author_path(@chain.authors.first.id) %></h1>
+
+<% end %>
+
+
+
+<h2>Books:</h2>
+<ul>
+  <% @chain.books.each do |book|%>
+<li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+  <% end %>
+
+</ul>
+
+<% if user_signed_in? %>
+
+<%= link_to 'Edit', edit_chain_path(@chain) %>
+<%= link_to 'Add New Book', new_book_path(:chain_id => @chain.id, :author_id => @chain.authors.first.id)%>
+<%= link_to 'Add Pre-existing Book', books_path(@chain) %>
+
+<%= link_to 'Delete', chain_path(@chain), method: :delete, data: {confirm: "Are you sure?"}%>
+
+<% end %>

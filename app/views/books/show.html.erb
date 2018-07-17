@@ -5,11 +5,11 @@
 <h2><%= @book.description %></h2>
 
 <% if @book.group.present? %>
-
-
-
   <h2><%= @book.group.name %></h2>
-
+<% end %>
+<% if @book.chain.present? %>
+  <h2>Series:</h2>
+  <p><a href="/chains/<%= @book.chain.id %>"><%= @book.chain.name %></a></p>
 <% end %>
 
 <% if user_signed_in? %>

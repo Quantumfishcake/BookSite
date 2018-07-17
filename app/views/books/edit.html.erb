@@ -7,6 +7,7 @@
 <%= f.label :description %>
 <%= f.text_field :description %>
 <%= f.select :author_id, @authors %>
+<%= f.select :chain_id, @chains, :include_blank => true %>
 <%= f.submit %>
 
 <% end %>

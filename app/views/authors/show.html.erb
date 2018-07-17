@@ -1,17 +1,37 @@
-<h1>author</h1>
-
-
-
 <h1><%= @author.name %></h1>
 
 <% if @author.groups.present? %>
 
-
-
+<% genrearray = [] %>
+<h4>Genres:</h4>
+<ul>
 <% @author.groups.each do |x|%>
-<h2>Genre:<%= x.name %></h2>
+<% if genrearray.index(x.name) == nil %>
+<li>
+<%= x.name %>
+</li>
+<% genrearray.push(x.name) %>
 <% end %>
-<h2>Books:</h2>
+<% end %>
+</ul>
+<% chainarray = [] %>
+<% if @author.chains.present? %>
+  <h4>Series:</h4>
+  <ul>
+  <% @author.chains.each do |x| %>
+  <% if chainarray.index(x.name) == nil %>
+  <li>
+    <a href="/chains/<%= x.id %>"><%= x.name %></a>
+    </li>
+  <% chainarray.push(x.name) %>
+
+   <% end %>
+  <% end %>
+</ul>
+
+
+<% end %>
+<h4>Books:</h4>
 <ul>
   <% @author.books.each do |book|%>
 <li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
@@ -21,6 +41,8 @@
 </ul>
 
 <% end %>
-
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_author_path(@author) %>
 <%= link_to 'Delete', author_path(@author), method: :delete, data: {confirm: "Are you sure?"}%>
+
+<% end %>

@@ -31,7 +31,6 @@ end
 
 def update
   @author = Author.find params[:id]
-  @author.category_id = params[:category_id]
   @author.update author_params
   if @author.update(author_params)
     redirect_to author_path(@author)
@@ -45,7 +44,7 @@ end
 
 private
 def author_params
-  params.require(:author).permit(:name, :image, :category_id)
+  params.require(:author).permit(:name, :image,)
 end
 
 end

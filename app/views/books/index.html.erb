@@ -5,5 +5,6 @@
   <h3><%= link_to book.title, book_path(book.id) %></h3>
 <% end %>
 
-
+<% if user_signed_in? %>
 <%= link_to "Add Book", new_book_path %>
+<% end %>

@@ -13,10 +13,13 @@
 #  author_id   :integer
 #  genre_id    :integer
 #  group_id    :integer
+#  chain_id    :integer
 #
 
 class Book < ApplicationRecord
   belongs_to :user, :optional => true
   belongs_to :group, :optional => true
   belongs_to :author, :optional => true
+  belongs_to :chain, :optional => true
+
 end

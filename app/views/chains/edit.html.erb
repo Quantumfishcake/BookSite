@@ -1,0 +1,15 @@
+<h1> edit series</h1>
+
+
+
+<%= form_for @chain, :html => {:multipart => true} do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :numbooks %>
+<%= f.text_field :numbooks %>
+
+
+<%= f.submit %>
+
+<% end %>
