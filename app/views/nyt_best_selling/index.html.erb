@@ -1,18 +1,34 @@
 <h1>NYtimes Best selling</h1>
 
-
-
-
 <h2>Fiction</h2>
+<div class='container1'>
+  <% count = 0 %>
+    <% @nyt_fiction["results"].each do |x| %>
+      <div class='box1'>
+        <h4><%= link_to (x["book_details"][0]["title"]), nyt_best_selling_path(1,:name => x["book_details"][0]["author"], :title => x["book_details"][0]["title"], :description => x["book_details"][0]["description"], :publisher =>
+          x["book_details"][0]["publisher"], :book_review_link => x["reviews"][0]["book_review_link"], :image => @coverarray[count]) %></h4>
+        <%= image_tag @coverarray[count] %>
+        <p><%= x["book_details"][0]["description"] %></p>
 
-<% @nyt_fiction["results"].each do |x| %>
-    <h4><%= x["book_details"][0]["title"] %></h4>
-    <p><%= x["book_details"][0]["description"] %></p>
-<% end %>
+        <%= button_to 'Save Author', {:controller => "authors", :action => "create", :author => {:name => "#{x["book_details"][0]["author"]}"} } , :method=>:post %>
+        <% if @authors.where(name: "#{x["book_details"][0]["author"]}").present? %>
+          <%= button_to 'Save Book', {:controller => "books", :action => "create", :book => {:title => "#{x["book_details"][0]["title"]}", :author_id => @authors.where(name: "#{x["book_details"][0]["author"]}").first.id }} , :method=>:post %>
+        <% end %>
+      </div>
+      <% count += 1 %><% end %>
+    </div>
+    <h2>Nonfiction</h2>
+    <div class='container2'>
 
-<h2>Nonfiction</h2>
+      <% count2 = 0 %>
+        <% @nyt_nonfiction["results"].each do |x| %>
+          <div class='box2'>
+            <%= image_tag @coverarray[count2] %>
+            <h4><%= x["book_details"][0]["title"] %></h4>
+            <p><%= x["book_details"][0]["description"] %></p>
 
-<% @nyt_nonfiction["results"].each do |x| %>
-    <h4><%= x["book_details"][0]["title"] %></h4>
-    <p><%= x["book_details"][0]["description"] %></p>
-<% end %>
+          </div>
+          <% count2 += 1 %><% end %>
+        </div>
+
+        <!-- @authors.where(name: "#{x["book_details"][0]["author"]}").first.id -->

@@ -1,6 +1,8 @@
 <h1><%= @book.title %></h1>
 <% if @book.author.present?   %>
 <h2><%= link_to @book.author.name, @book.author %></h2>
+
+
 <% end %>
 <h2><%= @book.description %></h2>
 

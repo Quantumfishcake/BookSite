@@ -12,6 +12,8 @@
 <% else %>
 <%= f.select :chain_id, @chains, :include_blank => true %>
 <% end %>
+<%= f.label :author %>
+<%= f.text_field :author %>
 <% if @authorparams.present? %>
 <%= f.select :author_id, [@author.id, @author.name] %>
 <% else %>

@@ -1,0 +1,20 @@
+
+
+
+
+<h1><%= @book2.title %></h1>
+<h3><%= @book2.authors %></h3>
+<%= image_tag @book2.image_link %>
+<p><%= @book2.publisher %></p>
+<p><%= @book2.published_date %></p>
+<p><%= @book2.average_rating %></p>
+<p><%= @book2.description %></p>
+
+
+
+
+
+    <%= form_tag("/create/books", method: "post") do%>
+          <%= hidden_field_tag(:title, @book2.title) %>
+          <%= submit_tag("Add to database") %>
+        <% end %>

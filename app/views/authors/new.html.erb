@@ -1,7 +1,13 @@
 
 <%= form_for @author do |f|  %>
+<% if @nameparams.present? %>
+<%= f.label :name %>
+<%= f.select :name, [@nameparams] %>
+<% else %>
 <%= f.label :name %>
 <%= f.text_field :name %>
+<% end %>
+
 <%= f.label :image %>
 <%= f.text_field :image %>
 

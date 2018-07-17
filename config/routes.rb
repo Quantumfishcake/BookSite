@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   get 'chains/new'
+
+  post '/create/books' => 'nyt_best_selling#create'
   devise_for :users
   resources :books
   resources :authors
   resources :chains
-
-  root 'nyt_best_selling#index'
+  resources :nyt_best_selling
+  root 'authors#index'
 end

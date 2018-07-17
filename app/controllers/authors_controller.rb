@@ -10,15 +10,18 @@ end
 
 def new
   @author = Author.new
-
   @group = Group.all.map { |e| [e.name, e.id]  }
+
+  if params[:name].present?
+    @nameparams = params[:name]
+  end
 end
 
 def create
   @author = Author.create (author_params)
 
   if @author.save
-    redirect_to root_path
+    redirect_to author_path(@author)
   else
     render 'new'
   end
@@ -40,7 +43,11 @@ def update
 end
 
 
-
+def destroy
+  @author = Author.find params[:id]
+  @author.destroy
+  redirect_to root_path
+end
 
 private
 def author_params
