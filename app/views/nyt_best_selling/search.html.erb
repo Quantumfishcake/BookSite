@@ -2,7 +2,14 @@
 
 <ul>
 <% @book.each do |x| %>
-<li><%=link_to x.title, nyt_best_selling_path(1, :title => x.title) %> by <%= x.authors %></li>
+<li>
+<% if @books.find_by title: "#{x.title}"%>
+<% book = @books.find_by title: "#{x.title}" %>
+  <%= link_to x.title, book_path(book.id) %>by <%= x.authors %>
+  <% else %>
+  <%=link_to x.title, nyt_best_selling_path(1, :title => x.title) %> by <%= x.authors %>
+<% end %>
+</li>
 
 
 <% end %>

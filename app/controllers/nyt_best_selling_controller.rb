@@ -21,7 +21,7 @@ def index
   #  book.first.image_link
   # end
 
-  @coverarray= ["http://books.google.com/books/content?id=Vu5MDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=M2__BgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=q_zWDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=7jBADwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=hx5DDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=9vBLDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=d_nENw_XPdMC&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=UccvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=dJ4_DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=JNdFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=aSZHDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=F8hdDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=o9EzDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=Qr1BDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api"]
+  @coverarray= ["http://books.google.com/books/content?id=Vu5MDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=M2__BgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=q_zWDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=7jBADwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=hx5DDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=9vBLDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=d_nENw_XPdMC&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=UccvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=dJ4_DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=JNdFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=aSZHDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=F8hdDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=o9EzDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=Qr1BDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api", "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api",  "http://books.google.com/books/content?id=GKMrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=none&source=gbs_api"]
   end
 
   def show
@@ -51,11 +51,12 @@ def index
     if temp_author.empty?
     author = Author.new
     author.name = @book2.authors
+
     author.save
     temp_author_id = author.id
     end
     temp_author_id = temp_author.first.id
-    newbook = Book.new
+    newbook = current_user.books.build
     newbook.title = @book2.title
     newbook.description = @book2.description
     newbook.author_id = temp_author_id
@@ -68,6 +69,7 @@ def index
   end
 
   def search
+    @books = Book.all
     details = params[:searchquery]
     author = Author.where(name: details)
     title = Book.where(title: details)
@@ -81,6 +83,31 @@ title_id = title[0].id
 
   end
 end
+
+def random
+  @coverarray= []
+
+  @book = GoogleBooks.search(@nameparams, {:count => 1, :api_key => 'AIzaSyCvHRg928eqZSfqLNbIK5VjTODyM1ewTIQ' })
+  @random_year = rand(2010..2018)
+
+  @authors = Author.all
+  @nyt_fiction = Nytapi.get_random
+
+  @nonfictiontitles = @nyt_fiction["results"].map do |x|
+    x["book_details"][0]["title"]
+  end
+
+  @nonfictioncovers = @nonfictiontitles.take(2).map do |x|
+   book = GoogleBooks.search(x, {:count => 1, :api_key => 'AIzaSyCvHRg928eqZSfqLNbIK5VjTODyM1ewTIQ' })
+   @coverarray.push(book.first.image_link(:zoom => 2))
+
+
+  end
+
+
+  end
+
+
 
 
 

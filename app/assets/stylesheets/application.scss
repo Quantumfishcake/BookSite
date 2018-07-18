@@ -20,7 +20,10 @@
   visibility: hidden;
 }
 
+.search {
+  display: inline-block;
 
+}
 
 .main-container {
   margin: 30px;
@@ -36,9 +39,13 @@
   grid-template-columns: 25% 25% 25% 25%;
 }
 
+.container6 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
 .dropbtn {
-    background-color: #3498DB;
-    color: white;
+    background-color: #f8f8f8;
+    color: #777;
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -46,7 +53,7 @@
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
+    color: black;
 }
 
 .dropdown {

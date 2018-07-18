@@ -1,37 +1,48 @@
 <h1><%= @book.title %></h1>
 <% if @book.author.present?   %>
-<h2><%= link_to @book.author.name, @book.author %></h2>
-
+  <h2><%= link_to @book.author.name, @book.author %></h2>
 
 <% end %>
 <% if @book.image.present? %>
-<%= image_tag @book.image %>
+  <%= image_tag @book.image %>
 <% end %>
 <% if @book.publisher.present? %>
-<p><%= @book.publisher %></p>
+  <p><%= @book.publisher %></p>
 <% end %>
 <% if @book.rating.present? %>
-<% @book.rating.to_i.times do  %>
- <span class="glyphicon glyphicon-star" style="color:orange"></span>
+  <% @book.rating.to_i.times do  %>
+    <span class="glyphicon glyphicon-star" style="color:orange"></span>
+  <% end %>
 <% end %>
-<% end %>
-<h2><%= @book.description %></h2>
-
+<h2>Description</h2>
+<p><%= @book.description %></p>
 <% if @book.group.present? %>
   <h2><%= @book.group.name %></h2>
 <% end %>
 <% if @book.chain.present? %>
   <h2>Series:</h2>
-  <p><a href="/chains/<%= @book.chain.id %>"><%= @book.chain.name %></a></p>
+  <p>
+    <a href="/chains/<%= @book.chain.id %>"><%= @book.chain.name %></a>
+  </p>
 <% end %>
 <% if @book.chain_id.present? %>
 <% else %>
-<%= form_for @book do |f| %>
-<%= f.select :chain_id, @chains, :include_blank => true %>
-<%= f.submit 'add to series' %>
+  <%= form_for @book do |f| %>
+  <%= f.select :chain_id, @chains, :include_blank => true %>
+  <%= f.submit 'add to series' %>
 <% end %>
 <% end %>
-<% if user_signed_in? %>
+
+<% if user_signed_in? && @book.user_id == current_user.id%>
 <%= link_to 'Edit', edit_book_path(@book) %>
 <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?"}%>
+<%= form_for(@book) do |f| %>
+<%= f.hidden_field :user_id, :value => nil %>
+<%= f.submit 'remove from mybooks'%>
+<% end %>
+<% elsif user_signed_in?  %>
+  <%= form_for(@book) do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.submit 'add to mybooks'%>
+<% end %>
 <% end %>

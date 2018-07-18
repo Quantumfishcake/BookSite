@@ -1,0 +1,19 @@
+
+
+
+<h1><%= @random_year %> Best Sellers</h1></h1>
+
+    <div class='container6'>
+      <% count = 0 %>
+        <% @nyt_fiction["results"].take(2).each do |x| %>
+          <div class='box1'>
+            <h4><%= link_to (x["book_details"][0]["title"]), nyt_best_selling_path(1, :title => x["book_details"][0]["title"]) %></h4>
+            <%= image_tag @coverarray[count] %>
+            <p><%= x["book_details"][0]["description"] %></p>
+            <p>rank<%= x["rank"] %></p>
+            <p>weeks on list<%= x["weeks_on_list"] %></p>
+
+          </div>
+          <% count += 1 %>
+          <% end %>
+        </div>

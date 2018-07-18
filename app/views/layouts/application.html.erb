@@ -27,16 +27,7 @@
             <% end %>
           </ul>
 
-          <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Genres</button>
-            <div id="myDropdown" class="dropdown-content">
-              <% Group.all.each do |group| %>
 
-                <%= link_to group.name, books_path(group: group.name) %>
-
-              <% end %>
-            </div>
-          </div>
 
           <ul class='nav navbar-nav'>
 
@@ -47,15 +38,29 @@
               <li><%= link_to 'Add book', new_book_path %></li>
               <li><%= link_to 'Add Author', new_author_path %></li>
               <li><%= link_to 'Add Series', new_chain_path %></li>
+              <li><%= link_to 'My Books', '/books/mybooks' %></li>
+              <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Genres</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <% Group.all.each do |group| %>
 
+                    <%= link_to group.name, books_path(group: group.name) %>
+
+                  <% end %>
+                </div>
+              </div>
+              <div class='search'>
+              <%= form_tag("/search/books", method: "post") do %>
+              <%= label_tag(:searchquery, "Search for:") %>
+              <%= text_field_tag(:searchquery) %>
+              <%= submit_tag("Search") %>
+
+            <% end %>
+            </div>
             <% end %>
           </ul>
 
-          <%= form_tag("/search/books", method: "post") do %>
-          <%= label_tag(:searchquery, "Search for:") %>
-          <%= text_field_tag(:searchquery) %>
-          <%= submit_tag("Search") %>
-        <% end %>
+
       </div>
 
     </nav>

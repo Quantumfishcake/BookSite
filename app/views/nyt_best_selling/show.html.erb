@@ -13,13 +13,12 @@
 <% author = @author.where(name: @book2.authors) %>
 <% book = @books.where(title: @book2.title) %>
 <% if  book.empty? %>
-
 <%= form_tag("/create/books", method: "post") do%>
       <%= hidden_field_tag(:title, @book2.title) %>
-      <%= submit_tag("Add to database") %>
-    <% end %>
+      <%= submit_tag("Add to Mybooks") %>
+      <% end %>
+    <% else%>
+    <%= link_to 'Database View', book_path(book[0].id) %>
 
 
-
-
-    <% end %>
+<% end %>

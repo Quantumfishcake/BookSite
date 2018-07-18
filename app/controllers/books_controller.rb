@@ -12,18 +12,11 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
   end
 
   def new
-    @book = Book.new
+    @book = current_user.books.build
     @authors = Author.all.map { |e| [e.name, e.id]  }
     @groups = Group.all.map { |e| [e.name, e.id]  }
     @chains = Chain.all.map { |e| [e.name, e.id]  }
-    if params[:chain_id].present?
-      @chainparams = params[:chain_id]
-      @chain = Chain.find_by(id: @chainparams)
-    end
-    if params[:author_id].present?
-      @authorparams = params[:author_id]
-      @author = Author.find_by(id: @authorparams)
-    end
+
 
 
   end
@@ -37,6 +30,12 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   end
 
+  def mybooks
+   @books = Book.all
+
+
+  end
+
   def edit
     @chains = Chain.all.map { |e| [e.name, e.id]  }
     @groups = Group.all.map { |e| [e.name, e.id]  }
@@ -45,6 +44,7 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
 
   def update
+
     @book.update book_params
     if @book.update(book_params)
       redirect_to book_path(@book)
@@ -55,11 +55,11 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   def destroy
     @book.destroy
-    redirect_to root_path
+    redirect_to '/books/mybooks'
   end
 
   def create
-    @book = Book.create(book_params)
+    @book = current_user.books.build(book_params)
 
     if @book.save
       redirect_to book_path(@book)
@@ -69,9 +69,11 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
   end
 
 
+
+
   private
   def book_params
-    params.require(:book).permit(:title, :description, :author, :group_id, :author_id, :chain_id)
+    params.require(:book).permit(:title, :description, :author, :group_id, :author_id, :chain_id, :user_id)
   end
 def find_book
 @book = Book.find(params[:id])
