@@ -5,55 +5,88 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-<div class = 'main-container'>
-  <nav class="navbar navbar-default">
-    <div class='container'>
-      <div class='navbar-header'>
-        <%= link_to 'Book', root_path, class: "navbar-brand" %>
+    <div class='main-container'>
+      <nav class="navbar navbar-default">
+        <div class='container'>
+          <div class='navbar-header'>
+            <%= link_to 'Book', root_path, class: "navbar-brand" %>
 
+          </div>
+
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <% if user_signed_in? %>
+              <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            <% else  %>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+            <% end %>
+          </ul>
+
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Genres</button>
+            <div id="myDropdown" class="dropdown-content">
+              <% Group.all.each do |group| %>
+
+                <%= link_to group.name, books_path(group: group.name) %>
+
+              <% end %>
+            </div>
+          </div>
+
+          <ul class='nav navbar-nav'>
+
+            <% if user_signed_in? %>
+
+              <li><%= link_to 'Series', chains_path %></li>
+              <li><%= link_to 'Best sellers', nyt_best_selling_index_path %></li>
+              <li><%= link_to 'Add book', new_book_path %></li>
+              <li><%= link_to 'Add Author', new_author_path %></li>
+              <li><%= link_to 'Add Series', new_chain_path %></li>
+
+            <% end %>
+          </ul>
+
+          <%= form_tag("/search/books", method: "post") do %>
+          <%= label_tag(:searchquery, "Search for:") %>
+          <%= text_field_tag(:searchquery) %>
+          <%= submit_tag("Search") %>
+        <% end %>
       </div>
 
-      <ul class="nav navbar-nav">
-         <li><%= link_to 'Sign up', new_user_registration_path  %></li>
-          <% if user_signed_in? %>
-          <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete   %></li>
-          <% else  %>
-          <li><%= link_to 'Login', new_user_session_path %></li>
-          <% end %>
-      </ul>
-
-      <ul class='nav navbar-nav'>
-
-
-            <% Group.all.each do |group| %>
-              <li>
-                <%= link_to group.name, books_path(group: group.name), class: 'link' %>
-              </li>
-            <% end %>
-
-
-        <% if user_signed_in? %>
-
-        <li><%= link_to 'Series', chains_path %></li>
-        <li><%= link_to 'Best sellers', nyt_best_selling_index_path %></li>
-        <li><%= link_to 'Add book', new_book_path %></li>
-        <li><%= link_to 'Add Author', new_author_path %></li>
-        <li><%= link_to 'Add Series', new_chain_path %></li>
-        <% end %>
-      </ul>
-    </div>
-
-  </nav>
+    </nav>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
-</div>
-  </body>
+  </div>
+  <script>
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
+</body>
 </html>

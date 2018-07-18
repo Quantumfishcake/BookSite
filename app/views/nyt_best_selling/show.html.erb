@@ -10,11 +10,16 @@
 <p><%= @book2.average_rating %></p>
 <p><%= @book2.description %></p>
 
+<% author = @author.where(name: @book2.authors) %>
+<% book = @books.where(title: @book2.title) %>
+<% if  book.empty? %>
+
+<%= form_tag("/create/books", method: "post") do%>
+      <%= hidden_field_tag(:title, @book2.title) %>
+      <%= submit_tag("Add to database") %>
+    <% end %>
 
 
 
 
-    <%= form_tag("/create/books", method: "post") do%>
-          <%= hidden_field_tag(:title, @book2.title) %>
-          <%= submit_tag("Add to database") %>
-        <% end %>
+    <% end %>

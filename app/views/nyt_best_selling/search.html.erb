@@ -1,0 +1,9 @@
+<h1>search results</h1>
+
+<ul>
+<% @book.each do |x| %>
+<li><%=link_to x.title, nyt_best_selling_path(1, :title => x.title) %> by <%= x.authors %></li>
+
+
+<% end %>
+</ul>

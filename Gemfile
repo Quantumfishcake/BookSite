@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'googlebooks'
 gem 'cloudinary'
 gem 'google_books'
+gem 'popper_js', '~> 1.12.9'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

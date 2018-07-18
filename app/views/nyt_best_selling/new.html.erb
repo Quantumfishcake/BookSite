@@ -1,0 +1,5 @@
+<%= form_tag("/search/books", method: "post") do %>
+  <%= label_tag(:searchquery, "Search for:") %>
+  <%= text_field_tag(:searchquery) %>
+  <%= submit_tag("Search") %>
+<% end %>

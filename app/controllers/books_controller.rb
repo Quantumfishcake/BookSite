@@ -32,6 +32,7 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   def show
     @book = Book.find params[:id]
+    @chains = Chain.all.map { |e| [e.name, e.id]  }
 
 
   end

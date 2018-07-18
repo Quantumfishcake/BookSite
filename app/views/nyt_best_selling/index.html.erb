@@ -1,5 +1,6 @@
 <h1>NYtimes Best selling</h1>
 
+
 <h2>Fiction</h2>
 <div class='container1'>
   <% count = 0 %>
@@ -9,13 +10,12 @@
           x["book_details"][0]["publisher"], :book_review_link => x["reviews"][0]["book_review_link"], :image => @coverarray[count]) %></h4>
         <%= image_tag @coverarray[count] %>
         <p><%= x["book_details"][0]["description"] %></p>
+        <p>rank<%= x["rank"] %></p>
+        <p>weeks on list<%= x["weeks_on_list"] %></p>
 
-        <%= button_to 'Save Author', {:controller => "authors", :action => "create", :author => {:name => "#{x["book_details"][0]["author"]}"} } , :method=>:post %>
-        <% if @authors.where(name: "#{x["book_details"][0]["author"]}").present? %>
-          <%= button_to 'Save Book', {:controller => "books", :action => "create", :book => {:title => "#{x["book_details"][0]["title"]}", :author_id => @authors.where(name: "#{x["book_details"][0]["author"]}").first.id }} , :method=>:post %>
-        <% end %>
       </div>
-      <% count += 1 %><% end %>
+      <% count += 1 %>
+      <% end %>
     </div>
     <h2>Nonfiction</h2>
     <div class='container2'>
