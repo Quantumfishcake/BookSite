@@ -17,7 +17,7 @@
       <nav class="navbar navbar-default">
 
           <div class='navbar-header'>
-            <%= link_to 'Book Depository', root_path, class: "navbar-brand" %>
+            <%= link_to 'Bookies', root_path, class: "navbar-brand" %>
             <ul class="nav navbar-nav">
               <li><%= link_to 'Sign up', new_user_registration_path %></li>
               <% if user_signed_in? %>
@@ -46,7 +46,7 @@
             <% if user_signed_in? %>
 
               <li><%= link_to 'Radom books', 'nyt_best_selling/random' %></li>
-              
+
               <li><%= link_to 'Series', chains_path %></li>
               <li><%= link_to 'Books', books_path %></li>
               <li><%= link_to 'Authors', authors_path %></li>
