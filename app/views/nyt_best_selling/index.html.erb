@@ -10,25 +10,13 @@
           x["book_details"][0]["publisher"], :book_review_link => x["reviews"][0]["book_review_link"], :image => @coverarray[count]) %></h4>
         <%= image_tag @coverarray[count] %>
         <p><%= x["book_details"][0]["description"] %></p>
-        <p>rank<%= x["rank"] %></p>
-        <p>weeks on list<%= x["weeks_on_list"] %></p>
+        <p><b>Rank:</b> <%= x["rank"] %></p>
+        <p><b>Weeks on list:</b> <%= x["weeks_on_list"] %></p>
 
       </div>
       <% count += 1 %>
       <% end %>
     </div>
-    <h2>Nonfiction</h2>
-    <div class='container2'>
 
-      <% count2 = 0 %>
-        <% @nyt_nonfiction["results"].each do |x| %>
-          <div class='box2'>
-            <%= image_tag @coverarray[count2] %>
-            <h4><%= x["book_details"][0]["title"] %></h4>
-            <p><%= x["book_details"][0]["description"] %></p>
-
-          </div>
-          <% count2 += 1 %><% end %>
-        </div>
 
         <!-- @authors.where(name: "#{x["book_details"][0]["author"]}").first.id -->

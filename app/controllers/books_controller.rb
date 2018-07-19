@@ -4,7 +4,7 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:group].blank?
-    @books = Book.all
+    @books = Book.all.sort()
   else
     @group_id = Group.find_by(name: params[:group])
     @books = Book.where(:group_id => @group_id)
@@ -21,11 +21,21 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   end
 
+def home
+  
+end
 
 
   def show
+    @lists = List.all
+    @subjects = Subject.all
     @book = Book.find params[:id]
     @chains = Chain.all.map { |e| [e.name, e.id]  }
+
+
+    @lists = List.where(user_id: current_user.id)
+      @lists2 = @lists.map { |e| [e.name, e.id]  }
+
 
 
   end
@@ -55,7 +65,7 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   def destroy
     @book.destroy
-    redirect_to '/books/mybooks'
+    redirect_to books_path
   end
 
   def create
@@ -73,7 +83,7 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   private
   def book_params
-    params.require(:book).permit(:title, :description, :author, :group_id, :author_id, :chain_id, :user_id)
+    params.require(:book).permit(:title, :description, :author, :group_id, :author_id, :chain_id, :user_id, :list_id)
   end
 def find_book
 @book = Book.find(params[:id])

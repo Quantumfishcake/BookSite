@@ -3,9 +3,14 @@
   <h2><%= link_to @book.author.name, @book.author %></h2>
 
 <% end %>
+
+<div class='bookshowcontainer'>
+  <div class='bookshowimage'>
 <% if @book.image.present? %>
   <%= image_tag @book.image %>
 <% end %>
+</div>
+<div class='bookshowtext'>
 <% if @book.publisher.present? %>
   <p><%= @book.publisher %></p>
 <% end %>
@@ -33,16 +38,25 @@
 <% end %>
 <% end %>
 
-<% if user_signed_in? && @book.user_id == current_user.id%>
+<% if user_signed_in?  %>
+<%= form_tag("/create/subject", method: "post") do%>
+<%= hidden_field_tag(:book_id, @book.id) %>
+<select name="list_id">
+  <option></option>
+  <% List.all.each do |list| %>
+  <% if list.user_id == current_user.id %>
+    <option value="<%= list.id %>"><%= list.name %></option>
+    <% end %>
+  <% end %>
+</select>
+<%= submit_tag("+ list") %>
+<% end %>
+<% end %>
+
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_book_path(@book) %>
 <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?"}%>
-<%= form_for(@book) do |f| %>
-<%= f.hidden_field :user_id, :value => nil %>
-<%= f.submit 'remove from mybooks'%>
+
 <% end %>
-<% elsif user_signed_in?  %>
-  <%= form_for(@book) do |f| %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.submit 'add to mybooks'%>
-<% end %>
-<% end %>
+</div>
+</div>

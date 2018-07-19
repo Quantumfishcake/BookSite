@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_18_023842) do
+ActiveRecord::Schema.define(version: 2018_07_18_235922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2018_07_18_023842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "category_id"
     t.integer "author_id"
     t.integer "genre_id"
     t.integer "group_id"
@@ -38,12 +37,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_023842) do
     t.text "image"
     t.text "publisher"
     t.integer "rating"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "list_id"
   end
 
   create_table "chains", force: :cascade do |t|
@@ -69,9 +63,27 @@ ActiveRecord::Schema.define(version: 2018_07_18_023842) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "book_id"
+  end
+
   create_table "nytapis", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "book_id"
+    t.bigint "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_subjects_on_book_id"
+    t.index ["list_id"], name: "index_subjects_on_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,4 +105,6 @@ ActiveRecord::Schema.define(version: 2018_07_18_023842) do
 
   add_foreign_key "genres", "authors"
   add_foreign_key "genres", "books"
+  add_foreign_key "subjects", "books"
+  add_foreign_key "subjects", "lists"
 end

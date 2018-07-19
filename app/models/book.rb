@@ -21,5 +21,7 @@ class Book < ApplicationRecord
   belongs_to :group, :optional => true
   belongs_to :author, :optional => true
   belongs_to :chain, :optional => true
+  has_many :subjects, :dependent => :nullify
+  has_many :lists, through: :subjects
 
 end

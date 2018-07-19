@@ -1,10 +1,16 @@
-<h1>index view</h1>
-
+<h1>Books</h1>
 <h1><%= params[:group] %></h1>
+<div class='bookindexcontainer'>
+
 <% @books.each do |book| %>
+<div class='bookindexbox'>
+<% if book.image.present? %>
+<h3><%= link_to book.title, book_path(book.id) %></h3>
+<%= image_tag book.image %>
+<% else %>
   <h3><%= link_to book.title, book_path(book.id) %></h3>
+  <% end %>
+  </div>
 <% end %>
 
-<% if user_signed_in? %>
-<%= link_to "Add Book", new_book_path %>
-<% end %>
+</div>

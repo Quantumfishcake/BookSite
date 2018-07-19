@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+
     <title>BookApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,33 +15,53 @@
   <body>
     <div class='main-container'>
       <nav class="navbar navbar-default">
-        <div class='container'>
+
           <div class='navbar-header'>
-            <%= link_to 'Book', root_path, class: "navbar-brand" %>
+            <%= link_to 'Book Depository', root_path, class: "navbar-brand" %>
+            <ul class="nav navbar-nav">
+              <li><%= link_to 'Sign up', new_user_registration_path %></li>
+              <% if user_signed_in? %>
+                <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+              <% else  %>
+                <li><%= link_to 'Login', new_user_session_path %></li>
+              <% end %>
+            </ul>
+
+                      <div class='search navbar-brand'>
+
+                        <%= form_tag("/search/books", method: "post") do %>
+                        <%= label_tag(:searchquery, "") %>
+                        <%= text_field_tag :searchquery, "", class: "searchinput", placeholder: "       Search for books by keyword / title / author / ISBN" %>
+                        <%= submit_tag "Search", class:'searchbutton' %>
+
+                      <% end %>
+
+                    </div>
 
           </div>
 
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Sign up', new_user_registration_path %></li>
-            <% if user_signed_in? %>
-              <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-            <% else  %>
-              <li><%= link_to 'Login', new_user_session_path %></li>
-            <% end %>
-          </ul>
-
-
-
+    <div class='navbar_bottom'>
           <ul class='nav navbar-nav'>
 
             <% if user_signed_in? %>
 
+              <li><%= link_to 'Radom books', 'nyt_best_selling/random' %></li>
+              
               <li><%= link_to 'Series', chains_path %></li>
-              <li><%= link_to 'Best sellers', nyt_best_selling_index_path %></li>
-              <li><%= link_to 'Add book', new_book_path %></li>
-              <li><%= link_to 'Add Author', new_author_path %></li>
-              <li><%= link_to 'Add Series', new_chain_path %></li>
+              <li><%= link_to 'Books', books_path %></li>
+              <li><%= link_to 'Authors', authors_path %></li>
               <li><%= link_to 'My Books', '/books/mybooks' %></li>
+              <li><%= link_to 'My Lists', lists_path %></li>
+              <div class="dropdown">
+                <button onclick="myFunction2()" class="dropbtn">Add</button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <li><%= link_to 'Book', new_book_path %></li>
+                  <li><%= link_to 'Author', new_author_path %></li>
+                  <li><%= link_to 'Series', new_chain_path %></li>
+                  <li><%= link_to 'List', new_list_path %></li>
+
+                </div>
+              </div>
               <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn">Genres</button>
                 <div id="myDropdown" class="dropdown-content">
@@ -49,32 +72,43 @@
                   <% end %>
                 </div>
               </div>
-              <div class='search'>
-              <%= form_tag("/search/books", method: "post") do %>
-              <%= label_tag(:searchquery, "Search for:") %>
-              <%= text_field_tag(:searchquery) %>
-              <%= submit_tag("Search") %>
 
-            <% end %>
-            </div>
-            <% end %>
-          </ul>
+          <% end %>
+        </ul>
 
-
-      </div>
+</div>
 
     </nav>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <div class='inner_container'>
+      <%= yield %>
+    </div>
   </div>
   <script>
     /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
     function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    function myFunction2() {
+      document.getElementById("myDropdown2").classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it

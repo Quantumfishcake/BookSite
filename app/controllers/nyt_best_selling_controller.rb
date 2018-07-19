@@ -2,14 +2,12 @@ class NytBestSellingController < ApplicationController
 def index
   @authors = Author.all
   @nyt_fiction = Nytapi.get_fiction_info
-  @nyt_nonfiction = Nytapi.get_nonfiction_info
+
 
   @fictiontitles = @nyt_fiction["results"].map do |x|
     x["book_details"][0]["title"]
   end
-  @nonfictiontitles = @nyt_nonfiction["results"].map do |x|
-    x["book_details"][0]["title"]
-  end
+
   # @coverarray = []
   # @nonfictioncovers = @nonfictiontitles.map do |x|
   #  book = GoogleBooks.search(x, {:count => 1, :api_key => 'AIzaSyCvHRg928eqZSfqLNbIK5VjTODyM1ewTIQ' })
@@ -29,6 +27,7 @@ def index
     @author = Author.all
 
       @nameparams = params[:title]
+      @categoryparams = params[:categories]
 
       @authorparams = params[:name]
       @descriptionparams = params[:description]
@@ -58,6 +57,7 @@ def index
     temp_author_id = temp_author.first.id
     newbook = current_user.books.build
     newbook.title = @book2.title
+
     newbook.description = @book2.description
     newbook.author_id = temp_author_id
     newbook.image = @book2.image_link

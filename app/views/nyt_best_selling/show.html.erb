@@ -4,8 +4,9 @@
 
 <h1><%= @book2.title %></h1>
 <h3><%= @book2.authors %></h3>
-<%= image_tag @book2.image_link %>
+<%= image_tag @book2.image_link(:zoom => 2) %>
 <p><%= @book2.publisher %></p>
+<p><%= @book2.categories %></p>
 <p><%= @book2.published_date %></p>
 <p><%= @book2.average_rating %></p>
 <p><%= @book2.description %></p>
@@ -15,7 +16,7 @@
 <% if  book.empty? %>
 <%= form_tag("/create/books", method: "post") do%>
       <%= hidden_field_tag(:title, @book2.title) %>
-      <%= submit_tag("Add to Mybooks") %>
+      <%= submit_tag("Add to books") %>
       <% end %>
     <% else%>
     <%= link_to 'Database View', book_path(book[0].id) %>
