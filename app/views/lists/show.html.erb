@@ -1,42 +1,31 @@
-
 <div class='secondinner'>
-<h1><%= (@list.name).capitalize %></h1>
+  <h1><%= (@list.name).capitalize %></h1>
 
+  <div class='listsshowcontainer'>
+    <% @list.books.each do |x| %>
+      <div>
+        <% if x.image.present? %>
+          <h4><%= link_to x.title, book_path(x.id)%></h4>
+          <%= image_tag x.image %>
+          <%= form_tag("/delete/subject", method: "post") do%>
+          <%= hidden_field_tag(:list_id, @list.id) %>
+          <%= hidden_field_tag(:book_id, x.id) %>
+          <%= submit_tag(" - list") %>
+        <% end %>
 
-<div class='listsshowcontainer'>
-<% @list.books.each do |x| %>
-<div>
-  <% if x.image.present? %>
-<h4><%= link_to x.title, book_path(x.id)%></h4>
-<%= image_tag x.image %>
-<%= form_tag("/delete/subject", method: "post") do%>
-<%= hidden_field_tag(:list_id, @list.id) %>
-<%= hidden_field_tag(:book_id, x.id) %>
-<%= submit_tag(" - list") %>
-<% end %>
-
-<% else %>
-<h4><%= link_to x.title, book_path(x.id)%></h4>
-<%= form_tag("/delete/subject", method: "post") do%>
-<%= hidden_field_tag(:list_id, @list.id) %>
-<%= hidden_field_tag(:book_id, x.id) %>
-<%= submit_tag(" - list") %>
-<% end %>
-
-
-
-<% end %>
-
-
-<% end %>
-
+      <% else %>
+        <h4><%= link_to x.title, book_path(x.id)%></h4>
+        <%= form_tag("/delete/subject", method: "post") do%>
+        <%= hidden_field_tag(:list_id, @list.id) %>
+        <%= hidden_field_tag(:book_id, x.id) %>
+        <%= submit_tag(" - list") %>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
 
 </div>
-</div>
-<br />
-
-
-
+<br/>
 
 <%= link_to 'Delete', list_path(@list), method: :delete, data: {confirm: "Are you sure?"}%>
 </div>

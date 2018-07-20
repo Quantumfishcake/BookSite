@@ -52,7 +52,7 @@
               <li><%= link_to 'Books', books_path %></li>
               <li><%= link_to 'Authors', authors_path %></li>
               <li><%= link_to 'My Books', '/books/mybooks' %></li>
-              <li><%= link_to 'My Lists', lists_path %></li>
+            
               <div class="dropdown">
                 <button onclick="myFunction2()" class="dropbtn">Add</button>
                 <div id="myDropdown2" class="dropdown-content">
@@ -70,6 +70,16 @@
 
                     <%= link_to group.name, books_path(group: group.name) %>
 
+                  <% end %>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction3()" class="dropbtn">Lists</button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <% List.all.each do |list| %>
+                    <% if list.user_id == current_user.id %>
+                    <%= link_to list.name, list_path(list.id) %>
+                  <% end %>
                   <% end %>
                 </div>
               </div>
@@ -110,6 +120,24 @@ toggle between hiding and showing the dropdown content */
     }
     function myFunction2() {
       document.getElementById("myDropdown2").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    function myFunction3() {
+      document.getElementById("myDropdown3").classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it

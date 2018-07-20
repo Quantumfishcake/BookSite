@@ -22,7 +22,7 @@ before_action :find_book, only: [:show, :edit, :update, :destroy]
   end
 
 def home
-  
+
 end
 
 
