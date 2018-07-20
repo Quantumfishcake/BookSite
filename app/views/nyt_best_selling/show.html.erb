@@ -8,11 +8,11 @@
 <%= image_tag @book2.image_link(:zoom => 2) %>
 </div>
 <div class='bookshowtext'>
-<p><%= @book2.publisher %></p>
-<p><%= @book2.categories %></p>
+<h5>Publisher: <%= @book2.publisher %></h5>
+<h5>Categories: <%= @book2.categories %></h5>
 <p><%= @book2.published_date %></p>
 <p><%= @book2.average_rating %></p>
-<p><%= @book2.description %></p>
+<p> <b>Description:</b> <%= @book2.description %></p>
 </div>
 
 
