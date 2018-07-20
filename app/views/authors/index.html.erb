@@ -1,5 +1,9 @@
+<div class='secondinner'>
 <h1>Authors</h1>
 
 <% @authors.each do |x| %>
-  <h2><%= link_to x.name, author_path(x.id) %></h2>
+<li>
+  <%= link_to x.name, author_path(x.id) %>
+  </li>
 <% end %>
+</div>

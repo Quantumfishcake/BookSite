@@ -18,7 +18,7 @@
 
           <div class='navbar-header'>
             <%= link_to 'Bookies', root_path, class: "navbar-brand" %>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav topnav">
               <li><%= link_to 'Sign up', new_user_registration_path %></li>
               <% if user_signed_in? %>
                 <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
@@ -45,7 +45,8 @@
 
             <% if user_signed_in? %>
 
-              <li><%= link_to 'Radom books', 'nyt_best_selling/random' %></li>
+              <li><%= link_to 'Random books', nyt_best_selling_random_path %></li>
+              <li><%= link_to 'Best Selling', nyt_best_selling_index_path %></li>
 
               <li><%= link_to 'Series', chains_path %></li>
               <li><%= link_to 'Books', books_path %></li>

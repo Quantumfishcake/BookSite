@@ -1,19 +1,25 @@
+<div class='secondinner'>
 <h1>search results</h1>
 <div class='searchcontainer'>
 
-<% @book.each do |x| %>
-<div>
-  <%= image_tag x.image_link %>
-<% if @books.find_by title: "#{x.title}"%>
-<% book = @books.find_by title: "#{x.title}" %>
-  <h4><%= link_to x.title, book_path(book.id) %>by <%= x.authors %></h4>
-  <% else %>
-<h4><%=link_to x.title, nyt_best_selling_path(1, :title => x.title) %> by <%= x.authors %></h4>
-<% end %>
+  <% @book.each do |x| %>
+    <div>
+      <% if x.image_link %>
+      <%= image_tag x.image_link %>
+      <% end %>
+      <% if @books.find_by title: "#{x.title}"%>
+        <% book = @books.find_by title: "#{x.title}" %>
+          <h4><%= link_to x.title, book_path(book.id) %>by
+            <%= x.authors %></h4>
+        <% else %>
+          <h4><%=link_to x.title, nyt_best_selling_path(1, :title => x.title) %>
+            by
+            <%= x.authors %></h4>
+        <% end %>
 
-</div>
+      </div>
 
-<% end %>
+    <% end %>
 
-
+  </div>
 </div>

@@ -1,3 +1,4 @@
+<div class='secondinner'>
 <h1><%= @book.title %></h1>
 <% if @book.author.present?   %>
   <h2><%= link_to @book.author.name, @book.author %></h2>
@@ -58,5 +59,6 @@
 <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?"}%>
 
 <% end %>
+</div>
 </div>
 </div>

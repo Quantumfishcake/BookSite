@@ -16,6 +16,11 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+body{
+  background-image: url("http://apps.npr.org/best-books-2017/assets/img/covers.jpg");
+
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -27,6 +32,13 @@
 .searchcontainer{
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
+}
+.secondinner {
+  width: 80vw;
+  margin: 0 auto;
+  background-color:#ffffffe8;
+  padding-left: 50px;
+  border-radius: 10px;
 }
 
 .search navbar-brand {
@@ -81,7 +93,7 @@ font-family: 'Ubuntu', sans-serif;
 
 .bookshowcontainer{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 40% 50%;
 }
 .bookindexcontainer{
   display: grid;
@@ -102,6 +114,16 @@ font-family: 'Ubuntu', sans-serif;
   grid-template-columns: 25% 25% 25% 25%;
 }
 
+.navbar-nav > li > a:hover {
+  font-weight: 700 !important;
+
+}
+.topnav> li > a:hover {
+  font-weight: 700 !important;
+  color: white !important;
+
+}
+
 .container2 {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
@@ -109,7 +131,8 @@ font-family: 'Ubuntu', sans-serif;
 
 .container6 {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 40% 40%;
+  grid-column-gap: 10%;
 }
 .dropbtn {
     background-color: #f8f8f8;
@@ -121,7 +144,7 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    color: black;
+    font-weight: 700;
 }
 
 .dropdown {
@@ -166,7 +189,7 @@ font-family: 'Ubuntu', sans-serif;
   top: 15vh;
   left: 15vw;
   z-index: 1;
-  
+
 border-radius: 5px;
 }
 .imgword h1{

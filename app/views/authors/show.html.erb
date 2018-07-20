@@ -1,3 +1,4 @@
+<div class='secondinner'>
 <h1><%= @author.name %></h1>
 
 <% if @author.groups.present? %>
@@ -47,3 +48,4 @@
 <%= link_to 'Delete', author_path(@author), method: :delete, data: {confirm: "Are you sure?"}%>
 
 <% end %>
+</div>

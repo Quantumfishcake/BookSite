@@ -1,4 +1,4 @@
-
+<div class='secondinner'>
 <h1><%= @chain.name %> </h1>
 
 <% if @chain.authors.present? %>
@@ -23,3 +23,4 @@
 <%= link_to 'Delete', chain_path(@chain), method: :delete, data: {confirm: "Are you sure?"}%>
 
 <% end %>
+</div>

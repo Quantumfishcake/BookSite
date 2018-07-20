@@ -1,16 +1,16 @@
+<div class='secondinner'>
 <h1> My Books</h1>
-
-
-
-
 <ul>
 <% @books.each do |x| %>
 
 <% if x.user_id == current_user.id %>
 <li>
-  <%=link_to x.title, book_path(x["id"])%>
+
+  <h4><%=link_to x.title, book_path(x["id"])%></h4>
+  <%= image_tag x.image %>
   </li>
 <% end %>
 
   <% end %>
   </ul>
+</div>

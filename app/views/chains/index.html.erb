@@ -1,5 +1,7 @@
+<div class='secondinner'>
 <h1>Series</h1>
 
 <% @chains.each do |x| %>
   <h2><%= link_to x.name, chain_path(x.id) %></h2>
 <% end %>
+</div>

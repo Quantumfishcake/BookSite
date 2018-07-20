@@ -1,4 +1,4 @@
-
+<div class='secondinner'>
 
 <%= form_for @book, :html => {:multipart => true} do |f| %>
 <%= f.select :group_id, @groups, :include_blank => true %>
@@ -10,3 +10,4 @@
 <%= f.select :chain_id, @chain, :include_blank => true %>
 <%= f.submit %>
 <% end %>
+</div>

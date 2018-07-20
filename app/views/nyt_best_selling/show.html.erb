@@ -1,15 +1,20 @@
 
+<div class='secondinner'>
+  <h1><%= @book2.title %></h1>
+  <h3><%= @book2.authors %></h3>
+<div class='bookshowcontainer'>
+    <div class='bookshowimage'>
 
-
-
-<h1><%= @book2.title %></h1>
-<h3><%= @book2.authors %></h3>
 <%= image_tag @book2.image_link(:zoom => 2) %>
+</div>
+<div class='bookshowtext'>
 <p><%= @book2.publisher %></p>
 <p><%= @book2.categories %></p>
 <p><%= @book2.published_date %></p>
 <p><%= @book2.average_rating %></p>
 <p><%= @book2.description %></p>
+</div>
+
 
 <% author = @author.where(name: @book2.authors) %>
 <% book = @books.where(title: @book2.title) %>
@@ -23,3 +28,5 @@
 
 
 <% end %>
+</div>
+</div>

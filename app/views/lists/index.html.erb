@@ -1,6 +1,12 @@
+<div class='secondinner'>
 <h1>My Lists</h1>
+<ul>
 <% @lists.each do |x| %>
 <% if x.user_id == current_user.id %>
-<%= link_to x.name, list_path(x.id) %>
+<li>
+<h4><%= link_to x.name, list_path(x.id) %></h4>
+</li>
 <% end %>
 <% end %>
+</ul>
+</div>

@@ -1,7 +1,7 @@
+<div class='secondinner'>
 <h1>Books</h1>
 <h1><%= params[:group] %></h1>
 <div class='bookindexcontainer'>
-
 <% @books.each do |book| %>
 <div class='bookindexbox'>
 <% if book.image.present? %>
@@ -13,4 +13,5 @@
   </div>
 <% end %>
 
+</div>
 </div>
